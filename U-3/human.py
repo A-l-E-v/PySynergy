@@ -10,3 +10,4 @@
 # print(a1, a2, a3, sep='+')
 # Подсказка: последняя стадия развития - Homo sapiens sapiens.
 
+print()
