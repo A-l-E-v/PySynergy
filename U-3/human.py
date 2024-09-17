@@ -1,3 +1,4 @@
+# Задание No2
 # А теперь мы с тобой напишем форму ввода ответа на тест по биологии для
 # студентов. Он должен запрашивать по порядку этапы развития человека
 # (проверим твое умение гуглить, что тоже очень важно для программиста. ) и в
@@ -14,7 +15,7 @@
 #
 
 print()
-print("Антропогенез тест")
+print("--- Антропогенез-тест ---")
 print()
 Stage1 = input ('Введите первый вид (подсказка: Homo habilis): ')
 Stage2 = input ('Введите второй вид (подсказка: Homo rudolfensis): ')
@@ -27,7 +28,7 @@ Stage8 = input ('Введите восьмой вид (подсказка: Homo 
 Stage9 = input ('Введите девятый вид (подсказка: Homo rhodesiensis): ')
 Stage10 = input ('Введите десятый вид (подсказка: Homo neanderthalensis): ')
 Stage11 = input ('Введите одиннадцатый вид (подсказка: Homo sapiens sapiens): ')
-Stage12 = input ('Введите двенадцатый вид (подсказка: Homo sapiens idaltu): ')
-Stage13 = input ('Введите тринадцатый вид (подсказка: Homo floresiensis): ')
-
+# Stage12 = input ('Введите двенадцатый вид (подсказка: Homo sapiens idaltu): ')
+# Stage13 = input ('Введите тринадцатый вид (подсказка: Homo floresiensis): ')
+print(Stage1,Stage2,Stage3,Stage4,Stage5,Stage6,Stage7,Stage8,Stage9,Stage10,Stage11,sep='=>')
 
