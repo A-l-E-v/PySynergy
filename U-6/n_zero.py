@@ -4,3 +4,16 @@
 #
 # https://github.com/A-l-E-v/PySynergy/blob/main/U-6/n_zero.py
 #
+
+print()
+print ('--- Количество нулей ---')
+N=int(input ('Сколько чисел будем вводить? '))
+# инициализируем счётчик нулей
+cnt = 0
+
+if N!=0:
+    for i in range(N):
+        number = int(input('Введите число '+str(i+1)+': '))
+        if number==0: cnt +=1
+    print ('Количество введённых нулей: ', cnt)    
+else: print ('Вы ввели нулевое количество чисел.')
