@@ -12,3 +12,20 @@ print()
 print('--- Майкл и Иван ---')
 print()
 
+minX=float(input('Введите минимальную сумму инвестиций Х: '))
+MikeA=float(input('Сколько долларов у Майкла? '))
+IvanB=float(input('Сколько долларов у Ивана? '))
+
+if MikeA>=minX and IvanB>=minX:
+    print('2')
+    exit(0)
+if MikeA>=minX and IvanB<minX:
+    print('Mike')
+    exit(0)
+if MikeA<minX and IvanB>=minX:
+    print('Ivan')
+    exit(0)
+if MikeA+IvanB>=minX:
+    print('1') 
+else:
+    print('0')

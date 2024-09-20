@@ -12,3 +12,13 @@
 print()
 print('--- Гласные и согласные ---')
 print()
+
+word = input ('Введите слово: ').lower()
+print ()
+print('Анализируем слово: ', word)
+
+vowels = sum(x in 'aeiou' for x in word)
+consonants = len(word)-vowels
+
+print ('Гласных: ', vowels)
+print ('Согласных: ', consonants)
