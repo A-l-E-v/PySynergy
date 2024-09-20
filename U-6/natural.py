@@ -4,3 +4,17 @@
 #
 # https://github.com/A-l-E-v/PySynergy/blob/main/U-6/natural.py
 #
+
+print()
+print('--- Натуральные делители ---')
+print()
+
+# инициализируем кол-во делителей
+cnt = 0
+X=int(input('Введите натуральное число Х:'))
+
+# если делится нацело без остатка
+for d in range(1,X+1):
+    if X%d==0: 
+        cnt+=1
+print ('Количество натуральных делителей числа '+str (X)+': ', cnt)    
