@@ -10,3 +10,17 @@ print()
 print('--- Перевёрнутый массив ---')
 print()
 
+N=int(input('Введите размерность N='))
+n_array = []
+
+# заполняем массив
+
+for i in range (N):
+    number = int(input ('Введите число: '))
+    n_array.append (number)
+
+# переворачиваем массив в новый массив
+n_array.reverse()
+
+# выводим новый массив
+print('Перевёрнутый введённый массив:', n_array)
