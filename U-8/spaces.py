@@ -23,7 +23,9 @@ for position in range(len(text_line)):
     else:
         # при дублировании пробелов не делаем ничего
         continue
+# удалим возможный последний пробел
+res_line = res_line.rstrip()
 
-print ('Строка без лишних пробелов: ', res_line)
+print ('Строка без лишних пробелов: "'+res_line+'"',sep='')
         
 
