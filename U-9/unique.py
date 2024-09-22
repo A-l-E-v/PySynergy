@@ -10,3 +10,11 @@
 print()
 print('--- Различные числа ---')
 print()
+
+n_set = set ()
+N=int(input('Введите количество чисел N: '))
+for i in range(N):
+    number = int(input(f'Введите {i+1} число: '))
+    n_set.add(number)
+
+print(f'Вы ввели {len(n_set)} различных чисел')
