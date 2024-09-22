@@ -4,5 +4,9 @@
 # сколько чисел содержится одновременно как в первом списке, так и во
 # втором.
 #
+# https://github.com/A-l-E-v/PySynergy/blob/main/U-9/2lists.py
 #
 
+print()
+print('--- Два списка ---')
+print()
