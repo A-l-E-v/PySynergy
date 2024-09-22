@@ -10,3 +10,29 @@
 print()
 print('--- Два списка ---')
 print()
+
+set1 = set ()
+set2 = set ()
+
+# список общих чисел
+set12 = set ()
+
+n1 = int(input('Введите длину первого списка: '))
+for i in range(n1):
+    set1.add (int(input(f'Введите {i+1} число первого списка: ')))
+
+print()
+
+n2 = int(input('Введите длину второго списка: '))
+for i in range(n2):
+    set2.add (int(input(f'Введите {i+1} число второго списка: ')))
+
+print()
+
+print ('Первый список:', set1)
+print ('Второй список:', set2)
+
+set12 = set1.intersection(set2)
+
+print ('Количество общих чисел в обоих списках: ', len(set12))
+print ('Общие числа: ', set12)
