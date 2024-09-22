@@ -9,3 +9,15 @@
 print()
 print('--- Последовательность чисел ---')
 print()
+
+num_list = list()
+
+num_list = input('Введите последовательность чисел через пробел: ').split()
+
+print('Введённая последовательность: ',num_list)
+
+for num in range(len(num_list)):
+    if num_list[num] in num_list[:num]:
+        print('Yes', ' - ', num_list[num])
+    else:
+        print ('No')
