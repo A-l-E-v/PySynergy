@@ -10,5 +10,18 @@
 # -5: -0.00032
 # }
 #
+# https://github.com/A-l-E-v/PySynergy/blob/main/U-10/powers.py
 #
-#
+
+print()
+print('--- Степень числа ---')
+print()
+
+my_dict={}
+
+for number in range (10,-6,-1):
+    my_dict[number] = number ** number
+
+print ('Словарь чисел и их степеней готов! ')
+print()
+print (my_dict)
