@@ -12,5 +12,9 @@
 # То есть, результирующий список будет выглядеть в нашем примере так:
 # [720, 120, 24, 6, 2, 1]
 #
+# https://github.com/A-l-E-v/PySynergy/blob/main/U-11/factorial.py
 #
-#
+
+print()
+print('--- Факториалы ---')
+print()
