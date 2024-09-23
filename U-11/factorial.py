@@ -18,3 +18,24 @@
 print()
 print('--- Факториалы ---')
 print()
+
+
+# считаем факториал числа рекурсией
+def fac(i):
+    if i == 1:
+        return 1
+    return fac(i - 1) * i
+
+number = int (input('От какого числа посчитаем ряд факториалов? '))
+# считаем факториал и он будет началом ряда
+start = fac(number)
+print(f'Факториал: {number}!={start}')
+
+# инициируем список факториалов
+fac_list = []
+
+# запускаем цикл от старта до 0 с шагом -1
+for series in range(start,0,-1):
+    fac_list.append (fac(series))
+
+print ('Список факториалов:', fac_list)
