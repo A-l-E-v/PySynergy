@@ -118,15 +118,17 @@ pets = {
 def pets_list():
     return
 
+# функция постановки год(а)/лет
 def get_suffix(age):
-    return
+    if age % 10 == 1 and age != 11 and age % 100 != 11: return 'год'
+    elif 1 < age % 10 <= 4 and age != 12 and age != 13 and age != 14: return 'года'
+    else: return 'лет'
+
 
 # функция получения информации по ID питомца
 def get_pet(ID):
     return pets[ID] if ID in pets.keys() else False
-    return (f'Это {pets[pet_id]['Вид питомца']} по кличке "{pet_id}". \
-    Возраст питомца: {pets[pet_id]['Возраст питомца']} {year_s}. \
-    Имя владельца: {pets[pet_id]['Имя владельца']}')
+    
 
 
 # функция создания записи
@@ -138,6 +140,16 @@ def create():
 # функция чтения записи по ID
 def read():
     pet_id=int(input('Введите ID записи: '))
+    pet = get_pet(pet_id)
+
+    if pet:
+        pet_name = [k for k in pet.keys()][0]
+        age = pet[pet_name]['Возраст питомца']
+        print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
+Возраст питомца: {age} {get_suffix(age)}. \
+Имя владельца: {pet[pet_name]['Имя владельца']}')
+    else:
+        print('Питомца с таким ID нет в БД!')
     
 
 # функция обновления записи по ID
@@ -153,6 +165,9 @@ def delete():
 def info():
     last = collections.deque(pets, maxlen=1)[0]
     print (f'Сейчас в БД {last} записей.')
+
+
+# ------ main () --------
 
 print()
 print('--- База данных питомцев ---')
@@ -170,7 +185,7 @@ while command != 'stop':
     elif command == 'read' : read()
     elif command == 'update' : update()
     elif command == 'delete' : delete()
-    elif command == 'info' :info()
+    elif command == 'info' : info()
     elif command == 'list' : pets_list()
     elif command == 'stop' : exit()
     else:
