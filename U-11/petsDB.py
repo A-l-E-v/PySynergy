@@ -115,17 +115,29 @@ pets = {
 },
 }
 
+# функция создания записи
 def create():
     print ('create!')
+    last = collections.deque(pets, maxlen=1)[0]
+    last += last
 
+# функция чтения записи по ID
 def read():
     print ('read!')
 
+# функция обновления записи по ID
 def update():
     print ('update!')
 
+# функция удаления записи по ID
 def delete():
     print ('delete!')
+
+# функция информации о БД
+
+def info():
+    last = collections.deque(pets, maxlen=1)[0]
+    print (f'Сейчас в БД {last} записей.')
 
 print()
 print('--- База данных питомцев ---')
@@ -137,12 +149,13 @@ command = ''
 # диспетчер команд
 while command != 'stop':
     print()
-    print ('Введите одну из команд (create, read, update, delete)')
+    print ('Введите одну из команд (create, read, update, delete или info)')
     command = input('Или stop для выхода: ')
     if command == 'create':create()
     elif command == 'read':read()
     elif command == 'update':update()
     elif command == 'delete':delete()
+    elif command == 'info':info()
     elif command == 'stop': exit()
     else:
         print('Нет такой команды!')
