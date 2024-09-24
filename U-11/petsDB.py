@@ -115,6 +115,20 @@ pets = {
 },
 }
 
+def pets_list():
+    return
+
+def get_suffix(age):
+    return
+
+# функция получения информации по ID питомца
+def get_pet(ID):
+    return pets[ID] if ID in pets.keys() else False
+    return (f'Это {pets[pet_id]['Вид питомца']} по кличке "{pet_id}". \
+    Возраст питомца: {pets[pet_id]['Возраст питомца']} {year_s}. \
+    Имя владельца: {pets[pet_id]['Имя владельца']}')
+
+
 # функция создания записи
 def create():
     print ('create!')
@@ -123,7 +137,8 @@ def create():
 
 # функция чтения записи по ID
 def read():
-    print ('read!')
+    pet_id=int(input('Введите ID записи: '))
+    
 
 # функция обновления записи по ID
 def update():
@@ -149,14 +164,15 @@ command = ''
 # диспетчер команд
 while command != 'stop':
     print()
-    print ('Введите одну из команд (create, read, update, delete или info)')
+    print ('Введите одну из команд (create, read, update, delete, info или list)')
     command = input('Или stop для выхода: ')
-    if command == 'create':create()
-    elif command == 'read':read()
-    elif command == 'update':update()
-    elif command == 'delete':delete()
-    elif command == 'info':info()
-    elif command == 'stop': exit()
+    if command == 'create' : create()
+    elif command == 'read' : read()
+    elif command == 'update' : update()
+    elif command == 'delete' : delete()
+    elif command == 'info' :info()
+    elif command == 'list' : pets_list()
+    elif command == 'stop' : exit()
     else:
         print('Нет такой команды!')
         print()
