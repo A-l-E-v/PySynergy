@@ -151,10 +151,11 @@ def get_pet(ID):
 def create():
     print ('create!')
     last_pet = last()
-    last += 1
+    last_pet += 1
 
 # функция чтения записи по ID
 def read():
+    info()
     pet_id=int(input('Введите ID записи: '))
     pet = get_pet(pet_id)
     print()
@@ -183,7 +184,7 @@ def delete():
         id_allowed = True
         while (id_allowed):
             id = int (input('Введите ID для удаления:'))
-            if id <= last:id_allowed=False
+            if id <= last_pet:id_allowed=False
         pets.pop(id)
         print()
         print (f'Запись под номером {id} была удалена.')
