@@ -187,7 +187,5 @@ while command != 'stop':
     elif command == 'delete' : delete()
     elif command == 'info' : info()
     elif command == 'list' : pets_list()
-    elif command == 'stop' : exit()
-    else:
-        print('Нет такой команды!')
-        print()
+    elif command != 'stop': print('Нет такой команды!')
+    print()
