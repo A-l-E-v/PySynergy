@@ -130,7 +130,8 @@ def list():
                 print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
 Возраст питомца: {age} {get_suffix(age)}. \
 Имя владельца: {pet[pet_name]['Имя владельца']}')
-    else: create()
+    else: 
+        print ('БД пуста! Создайте первую запись!')
     return
 
 # функция постановки год(а)/лет
@@ -204,7 +205,11 @@ def info():
 # запрашиваем длину словаря
     pets_length = len(pets)
     if (pets_length):
-         print (f'Количество записей в БД: {pets_length}')
+        print (f'Количество записей в БД: {pets_length}')
+        print ('Использующиеся ID: ', end='')
+        for k in pets.keys():
+            print (f'{k} ', end='')
+        print()
     else:
         print ('БД пуста! Создайте первую запись!')
 
