@@ -93,6 +93,8 @@
 #
 
 import collections
+from collections import deque #для проверки пустого словаря
+
 
 # дефолтный словарь питомцев
 
@@ -117,18 +119,19 @@ pets = {
 
 def list():
 # запрашиваем длину коллекции
-    last = collections.deque(pets, maxlen=1)[0]
+    last_pet = last()
     print()
-# проходимся по каждому
-    for pet_id in pets:
-        pet = get_pet(pet_id)
-        if pet:
-            pet_name = [k for k in pet.keys()][0]
-            age = pet[pet_name]['Возраст питомца']
-            print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
+# проходимся по каждому если есть, если нет, то переходим на ввод первого
+    if (last_pet):
+        for pet_id in pets:
+            pet = get_pet(pet_id)
+            if pet:
+                pet_name = [k for k in pet.keys()][0]
+                age = pet[pet_name]['Возраст питомца']
+                print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
 Возраст питомца: {age} {get_suffix(age)}. \
 Имя владельца: {pet[pet_name]['Имя владельца']}')
-
+    else: create()
     return
 
 # функция постановки год(а)/лет
@@ -147,8 +150,8 @@ def get_pet(ID):
 # функция создания записи
 def create():
     print ('create!')
-    last = collections.deque(pets, maxlen=1)[0]
-    last += last
+    last_pet = last()
+    last += 1
 
 # функция чтения записи по ID
 def read():
@@ -173,14 +176,38 @@ def update():
 
 # функция удаления записи по ID
 def delete():
-    print ('delete!')
+    info()
+    last_pet = last()
+    # если есть записи в словаре
+    if (last_pet):
+        id_allowed = True
+        while (id_allowed):
+            id = int (input('Введите ID для удаления:'))
+            if id <= last:id_allowed=False
+        pets.pop(id)
+        print()
+        print (f'Запись под номером {id} была удалена.')
+        info()
+        print()
+    # иначе создаём запись
+    else: create()
 
 # функция информации о БД
-
 def info():
 # запрашиваем длину словаря
-    last = collections.deque(pets, maxlen=1)[0]
-    print (f'Количество записей в БД: {last}')
+        last_pet=last()
+        if (last_pet):
+            print (f'Количество записей в БД: {last_pet}')
+        else:
+            print ('БД пуста! Создайте первую запись!')
+            create()
+
+
+def last():
+    if bool(deque(pets)):
+        return collections.deque(pets, maxlen=1)[0]
+    else:
+        return False
 
 
 # ------ main () --------
