@@ -118,11 +118,10 @@ pets = {
 }
 
 def list():
-# запрашиваем длину коллекции
-    last_pet = last()
-    print()
+# узнаём размер словаря
+    pets_length = len(pets)
 # проходимся по каждому если есть, если нет, то переходим на ввод первого
-    if (last_pet):
+    if (pets_length):
         for pet_id in pets:
             pet = get_pet(pet_id)
             if pet:
@@ -150,6 +149,8 @@ def get_pet(ID):
 # функция создания записи
 def create():
     print ('create!')
+
+    # по умолчанию увеличиваем ID на единицу от последнего 
     last_pet = last()
     last_pet += 1
 
@@ -178,15 +179,20 @@ def update():
 # функция удаления записи по ID
 def delete():
     info()
-    last_pet = last()
+    pets_length = len(pets)
     # если есть записи в словаре
-    if (last_pet):
+    if (pets_length):
         id_allowed = True
         while (id_allowed):
             id = int (input('Введите ID для удаления:'))
-            if id <= last_pet:id_allowed=False
-        pets.pop(id)
+            # if id <= last_pet:id_allowed=False
+            if (get_pet(id)):id_allowed=False
+            else:
+                print ('Записи с таким ID не существует.')
+        # print ('ДО:',pets)
+        del pets[id]
         print()
+        # print ('ПОСЛЕ:',pets)
         print (f'Запись под номером {id} была удалена.')
         info()
         print()
@@ -196,17 +202,18 @@ def delete():
 # функция информации о БД
 def info():
 # запрашиваем длину словаря
-        last_pet=last()
-        if (last_pet):
-            print (f'Количество записей в БД: {last_pet}')
-        else:
-            print ('БД пуста! Создайте первую запись!')
-            create()
+    pets_length = len(pets)
+    if (pets_length):
+         print (f'Количество записей в БД: {pets_length}')
+    else:
+        print ('БД пуста! Создайте первую запись!')
+
 
 
 def last():
     if bool(deque(pets)):
-        return collections.deque(pets, maxlen=1)[0]
+        records = collections.deque(pets, maxlen=1)[0]
+        return records
     else:
         return False
 
