@@ -149,7 +149,7 @@ def get_pet(ID):
 
 # функция создания записи
 def create():
-    print ('create!')
+
     # по умолчанию увеличиваем ID на единицу от последнего 
     last_pet = last()
     last_pet += 1
@@ -166,6 +166,7 @@ def create():
     # добавляем в словарь нового питомца
     pets[last_pet]=a_pet
 
+    print ('Питомец добавлен!')
 
 
 # функция чтения записи по ID
@@ -175,7 +176,7 @@ def read():
     pet = get_pet(pet_id)
     print()
 
-    if pet:
+    if (pet):
         pet_name = [k for k in pet.keys()][0]
         age = pet[pet_name]['Возраст питомца']
         print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
@@ -188,7 +189,25 @@ def read():
 
 # функция обновления записи по ID
 def update():
-    print ('update!')
+    info()
+    id = int(input('Введите ID питомца для обновления: '))
+    if (get_pet(id)):
+        pet_name = input ('Введите имя питомца: ')
+
+        # словарь одного питомца
+        a_pet =  {pet_name: dict()}
+
+        a_pet [pet_name]['Вид питомца'] = input ('Введите вид питомца: ')
+        a_pet [pet_name]['Возраст питомца'] = int(input ('Введите возраст питомца: '))
+        a_pet [pet_name]['Имя владельца'] = input ('Введите имя владельца: ')
+        
+        # добавляем в словарь нового питомца
+        pets[id]=a_pet
+
+        print (f'Питомец {id} обновлён!')
+
+    else:
+        print ('Такой ID в БД не используется')
 
 # функция удаления записи по ID
 def delete():
@@ -198,7 +217,7 @@ def delete():
     if (pets_length):
         id_allowed = True
         while (id_allowed):
-            id = int (input('Введите ID для удаления:'))
+            id = int (input('Введите ID для удаления: '))
             # if id <= last_pet:id_allowed=False
             if (get_pet(id)):id_allowed=False
             else:
@@ -227,7 +246,7 @@ def info():
         print ('БД пуста! Создайте первую запись!')
 
 
-
+# функция получения последней записи в словарь или false, если пусто
 def last():
     if bool(deque(pets)):
         records = collections.deque(pets, maxlen=1)[0]
