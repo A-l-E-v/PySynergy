@@ -100,7 +100,7 @@ pets = {
 1:
 {
 'Мухтар': {
-'Вид питомца': 'Собака',
+'Вид питомца': 'собака',
 'Возраст питомца': 9,
 'Имя владельца': 'Павел'
 },
@@ -115,7 +115,20 @@ pets = {
 },
 }
 
-def pets_list():
+def list():
+# запрашиваем длину коллекции
+    last = collections.deque(pets, maxlen=1)[0]
+    print()
+# проходимся по каждому
+    for pet_id in pets:
+        pet = get_pet(pet_id)
+        if pet:
+            pet_name = [k for k in pet.keys()][0]
+            age = pet[pet_name]['Возраст питомца']
+            print (f'Это {pet[pet_name]['Вид питомца']} по кличке "{pet_name}". \
+Возраст питомца: {age} {get_suffix(age)}. \
+Имя владельца: {pet[pet_name]['Имя владельца']}')
+
     return
 
 # функция постановки год(а)/лет
@@ -141,6 +154,7 @@ def create():
 def read():
     pet_id=int(input('Введите ID записи: '))
     pet = get_pet(pet_id)
+    print()
 
     if pet:
         pet_name = [k for k in pet.keys()][0]
@@ -150,6 +164,7 @@ def read():
 Имя владельца: {pet[pet_name]['Имя владельца']}')
     else:
         print('Питомца с таким ID нет в БД!')
+        info()
     
 
 # функция обновления записи по ID
@@ -163,8 +178,9 @@ def delete():
 # функция информации о БД
 
 def info():
+# запрашиваем длину словаря
     last = collections.deque(pets, maxlen=1)[0]
-    print (f'Сейчас в БД {last} записей.')
+    print (f'Количество записей в БД: {last}')
 
 
 # ------ main () --------
@@ -186,6 +202,6 @@ while command != 'stop':
     elif command == 'update' : update()
     elif command == 'delete' : delete()
     elif command == 'info' : info()
-    elif command == 'list' : pets_list()
+    elif command == 'list' : list()
     elif command != 'stop': print('Нет такой команды!')
     print()
