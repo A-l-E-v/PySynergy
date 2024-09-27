@@ -68,8 +68,10 @@
 # уметь как складывать матрицы, так и генерировать матрица различных
 # размерностей. Будь то матрицы 10х10 или 4х3
 #
+# https://github.com/A-l-E-v/PySynergy/blob/main/U-13/sum_m.py
 #
-#
+
+import random
 
 test_matrix_1 = [[0, -2, -1, -6, -6, 0, -9, -8, -30, -9],
 [5, 12, 4, -16, -4, -9, -16, -15, 1, -26],[13, 39, 14, 23, -4, 40, 32, 6, -8, 23],
@@ -104,33 +106,78 @@ test_matrix_3 = [[0, 2, 5, 5, 9, 6, 0, 18, -15, 12],
 [-47, 45, 87, 5, -105, -161, -70, -95, -4, 0],
 [75, 44, -37, 57, 20, -51, 97, 84, -147, 76]]
 
-def fill_matrix ():
+def fill_matrix (matrix):
+    for i in range (len(matrix)):
+        for j in range (len(matrix[0])):
+            matrix[i][j] = random.randint(-499, 499)
     return
 
-def print_matrix(matrix):
+# функция вывода матрицы любой размерности.
+def print_matrix (matrix):
+    print()
+    for i in range (len(matrix)):
+        for j in range (len(matrix[0])):
+            print (f' {matrix[i][j]:4}', end='')
+        print()
+    print()
     return
 
 
-def sum_matrix ():
-    return
+# функция суммирования двух матриц одинаковой размерности. Проверки размерности нет.
+def sum_matrix (m1,m2):
+ print()
+ m=len(m1[0])
+ n=len(m1)
+ # инициализируем пустую новую матрицу заполненную нулями
+ m3 = [ [0]*m for i in range(n) ]
+
+ for i in range (n):
+        for j in range (m):
+            m3[i][j]=m1[i][j]+m2[i][j]
+ return m3
 
 print()
 print('--- Генерация и сложение матриц ---')
 print()
 
-print ('Создаём и заполняем первую матрицу m1 x n1.')
-m1=int(input('Введите параметр m1: '))
-n1=int(input('Введите параметр n1: '))
+print ('Выполним тест.')
+print ('Допустим имеется матрица 1 размерностью 10х10:')
+print_matrix (test_matrix_1)
+print ('и матрица 2 размерностью 10х10:')
+print_matrix (test_matrix_2)
+print (', то результатом сложения двух матриц должна быть матрица: ')
+print_matrix (test_matrix_3)
+print()
+print ('Выполнив сложение, получаем третью матрицу. Сравните с тестовой результирующей матрицей выше:')
+matrix_3 = sum_matrix(test_matrix_1,test_matrix_2)
+print_matrix (matrix_3)
+
+print()
+print('Выполним реальный тест генерации и сложения матриц.')
 print()
 
-print ('Создаём и заполняем вторую матрицу m2 x n2.')
-m2=int(input('Введите параметр m2: '))
-n2=int(input('Введите параметр n2: '))
+print ('Создаём и заполняем две матрицы размерностью m x n.')
+m=int(input('Введите количество строк m: '))
+n=int(input('Введите количество столбцов n: '))
 print()
 
-matrix_1 = [m1,n1]
-matrix_2 = [m2,n2]
-matrix_3 = [100,100]
+# инициализируем обе матрицы
+matrix_1 = [ [0]*n for i in range(m) ]
+matrix_2 = [ [0]*n for i in range(m) ]
 
+# заполняем обе матрицы случайными числами
+fill_matrix (matrix_1)
+fill_matrix (matrix_2)
 
+# выводим на экран обе матрицы
+print ('Первая сгенерированная матрица:')
+print_matrix (matrix_1)
+print ('Вторая сгенерированная матрица:')
+print_matrix (matrix_2)
 
+# проводим сложение матриц
+matrix_3 = sum_matrix (matrix_1,matrix_2)
+
+# выводим на экран третью матрицу
+print ('Суммарная матрица:')
+print_matrix (matrix_3)
