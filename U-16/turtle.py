@@ -17,6 +17,7 @@
 
 # функция печати координат и перемещения трёх черепах
 def t_print():
+    print()
     print (f'Черепашка 1 находит в ({t1.x}, {t1.y}) и может пройти {t1.s} за шаг')
     print (f'Черепашка 2 находит в ({t2.x}, {t2.y}) и может пройти {t2.s} за шаг')
     print (f'Черепашка 3 находит в ({t3.x}, {t3.y}) и может пройти {t3.s} за шаг')
@@ -34,33 +35,72 @@ class Turtle():
         self.y = y
         self.s = s
 
-    def go_up():
-        self.y +=s
+    def go_up(self):
+        self.y += self.s
 
-    def go_down():
-        self.y -=s
+    def go_down(self):
+        self.y -= self.s
 
-    def go_left():
-        self.x -=s
+    def go_left(self):
+        self.x -= self.s
     
-    def go_right():
-        self.x +=s
+    def go_right(self):
+        self.x += self.s
     
-    def evolve():
+    def evolve(self):
         self.s +=1
     
-    def degrade ():
+    def degrade (self):
        
         self.s -=1
 
-        if s > 0:
+        if self.s > 0:
             return
         else:
+            # ставим черепашки минимальную скорость
+            self.s = 1
             raise ValueError(sZero) 
  
 
 t1 = Turtle()
 t2 = Turtle(10,10,1)
 t3 = Turtle (-2,-3,2)
+
+t_print()
+
+print()
+print ('Переместим 1-ую черепашку налево вниз, 2-ую направо вверх, 3-ю направо вниз')
+
+t1.go_left()
+t1.go_down()
+
+t2.go_right()
+t2.go_up()
+
+t3.go_right()
+t3.go_down()
+
+t_print()
+
+print()
+print ('Ускорим 1-ую черепашку налево вверх, замедлим 2-ую налево вниз, замедлим 3-ю налево вниз')
+
+t1.evolve()
+t1.go_left()
+t1.go_down()
+
+try:
+    t2.degrade()
+except ValueError:
+    print ('Черепашка 2 уже на минимальной скорости!')
+t2.go_right()
+t2.go_up()
+
+try:
+    t3.degrade()
+except ValueError:
+    print ('Черепашка 3 уже на минимальной скорости!')
+t3.go_right()
+t3.go_down()
 
 t_print()
