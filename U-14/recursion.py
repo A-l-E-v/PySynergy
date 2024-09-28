@@ -5,11 +5,34 @@
 # до последнего и в конце отобразит сообщение Конец списка, если выводить
 # больше нечего. Циклы использовать запрещено
 #
+# https://github.com/A-l-E-v/PySynergy/blob/main/U-14/recursion.py
 #
-#
+
+def rec_print (list,p):
+    if p < len(list):
+        print (f'{list[p]} ', end='')
+        p +=1
+        return rec_print (list,p)
+    print ('Конец списка')
+    return  
 
 print()
 print('--- Print через рекурсию ---')
 print()
 
+print ('Cписок на печать:')
 my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+print(my_list)
+print()
+
+# с какой позиции выводить список
+p=0
+print (f'Выводим список с {p}-ой позиции и до конца списка методом рекурсии:')
+rec_print (my_list,p)
+
+# выведем список с 7-ой позиции
+p=7
+print()
+print (f'Выводим список с {p}-ой позиции и до конца списка методом рекурсии:')
+rec_print (my_list,p)
+print()
