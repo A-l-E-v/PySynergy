@@ -9,11 +9,20 @@
 # https://github.com/A-l-E-v/PySynergy/blob/main/U-16/cash.py
 #
 
+def total():
+    print (f'В кассе 0 сейчас {Kassa0.count_1000()} тысяч, точная сумма: {Kassa0.amount}.')
+    print (f'В кассе 1 сейчас {Kassa1.count_1000()} тысяч, точная сумма: {Kassa1.amount}.')
+    print (f'В кассе 2 сейчас {Kassa2.count_1000()} тысяч, точная сумма: {Kassa2.amount}.')
+    print()
+
+# пустой класс ошибки
+class NotEnoughMoney(ValueError):
+    pass
 
 class Kassa():
 
 # инициализация начального баланса
-    def __init__ (self, amount):
+    def __init__ (self, amount=0):
         self.amount = amount
 
 # пополнение на X 
@@ -29,11 +38,43 @@ class Kassa():
         if self.amount >= X:
             self.amount -=X
         else:
-            return False
+            # return False
+            # поднимаем ошибку изъятия денег
+            raise ValueError(NotEnoughMoney) 
 
 
+# проверим работу трёх касс
+Kassa0 = Kassa()            # пустая касса
 Kassa1 = Kassa (150000)
 Kassa2 = Kassa (7500000)
 
-print (f'В кассе 1 сейчас {Kassa1.count_1000()} тысяч.')
-print (f'В кассе 2 сейчас {Kassa2.count_1000()} тысяч.')
+total()
+
+# пополним три кассы на 1 тыс
+Kassa0.top_up(1000)
+Kassa1.top_up(1000)
+Kassa2.top_up(1000)
+
+total()
+
+# пробуем снять по 2 тысячи из каждой кассы
+try:
+    Kassa0.take_away(2000)
+except ValueError:
+    print ('В кассе 0 недостаточно денег.')
+    print()
+
+try:
+    Kassa1.take_away(2000)
+except ValueError:
+    print ('В кассе 1 недостаточно денег.')
+    print()
+
+
+try:
+    Kassa2.take_away(2000)
+except ValueError:
+    print ('В кассе 2 недостаточно денег.')
+    print()
+
+total()
