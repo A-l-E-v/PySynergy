@@ -60,7 +60,22 @@ class Turtle():
             # ставим черепашки минимальную скорость
             self.s = 1
             raise ValueError(sZero) 
- 
+    
+    def count_moves(self, x2, y2):
+        self.x2 = x2
+        self.y2 = y2
+        self.x1 = self.x
+        self.y1 = self.y
+
+        x21 = abs((abs(self.x2)-abs(self.x)))
+        y21 = abs((abs(self.y2)-abs(self.y)))
+
+# %self.s
+        print (f'По координате Х позиций: {x21}')
+        print (f'По координате Х позиций: {y21}')
+
+
+        return  x21 + y21
 
 t1 = Turtle()
 t2 = Turtle(10,10,1)
@@ -104,3 +119,5 @@ t3.go_right()
 t3.go_down()
 
 t_print()
+
+print (f'Черепашка 1 может попасть в (4, -3) за {t1.count_moves(4, -3)} шагов.')
