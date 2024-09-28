@@ -9,6 +9,7 @@
 # https://github.com/A-l-E-v/PySynergy/blob/main/U-16/cash.py
 #
 
+# функция печати тысяч в кассах и точных сумм
 def total():
     print (f'В кассе 0 сейчас {Kassa0.count_1000()} тысяч, точная сумма: {Kassa0.amount}.')
     print (f'В кассе 1 сейчас {Kassa1.count_1000()} тысяч, точная сумма: {Kassa1.amount}.')
