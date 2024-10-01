@@ -41,7 +41,6 @@ def process_key(key):
     
     # сохранение игры в файл
     if c == 'n':
-        exit (0)
         data = {'helicopter': helico.export_data(),
                 'map' : game_map.export_data(),
                 'clouds' : clouds.export_data(),
