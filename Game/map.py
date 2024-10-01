@@ -7,8 +7,8 @@ import os
 # 1 - дерево
 # 2 - река
 # 3 - госпиталь
-# 4 - апргейд-шоп
-# 5 - огня
+# 4 - upgrade shop
+# 5 - огонь
 
 CELL_TYPES="🟩🌲🌊🏥🔧🔥" 
 TREE_BONUS = 100
@@ -27,28 +27,40 @@ class Map:
         self.generate_hospital()
         self.clouds = Clouds(w, h) 
     
+    # проверка координат внутри поля
     def check_bounds(self, x, y):
         if (x < 0 or y <0 or x>= self.h or y >= self.w):
             return False
         return True
     
+    # вывод карты
     def print_map(self, helico, clouds):
+        # верхняя окантовка поля
         print("⬛" * (self.w+2)) 
         for ri in range(self.h):
             print("⬛", end="")
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
+
+                # обычное облако
                 if (clouds.cells[ri][ci] == 1):
                     print("⬜", end="") 
+
+                # грозовое облако
                 elif (clouds.cells[ri][ci] == 2):
                     print("⚡", end="")
+
+                # вертолётик
                 elif (helico.x == ri and helico.y == ci):
                     print("🚁", end= "")
                 elif (cell >= 0 and cell < len(CELL_TYPES)):
                     print(CELL_TYPES[cell], end="")
+
+            # окантовка игрового поля
             print("⬛") 
         print("⬛" * (self.w+2))
     
+    # генерация водоёмов
     def generate_rivers(self, l):
             rc = randcell(self.w, self.h)
             rx,ry = rc[0], rc[1]
@@ -61,22 +73,27 @@ class Map:
                     rx,ry = rx2, ry2
                     l -= 1
 
+    # генерация леса
     def generate_forest(self, r, mxr):
         for ri in range(self.h):
             for ci in range(self.w):
                 if randbool(r,mxr):
                     self.cells[ri][ci] = 1
 
+    # генерация дерева
     def generate_tree(self):
         c =  randcell(self.w, self.h)
         cx, cy = c[0], c[1]
         if (self.cells[cx][cy] == 0):
             self.cells[cx][cy] = 1
 
+    # генерация апгрейда
     def generate_upgrade_shop(self):
         c =  randcell(self.w, self.h)
         cx, cy = c[0], c[1]
         self.cells[cx][cy] = 4
+
+    # генерация больницы
     def generate_hospital(self):
         c =  randcell(self.w, self.h)
         cx, cy = c[0], c[1]
@@ -84,12 +101,15 @@ class Map:
             self.cells[cx][cy] = 3
         else:
             self.generate_hospital()
-   
+    
+    # генерация огня
     def add_fire(self):
         c =  randcell(self.w, self.h)
         cx, cy = c[0], c[1]
         if self.cells[cx][cy] == 1:
             self.cells[cx][cy] = 5 
+
+    # обновление огня
     def update_fires(self):
         for ri in range(self.h):
             for ci in range(self.w):
@@ -99,7 +119,7 @@ class Map:
         for i in range(10):
             self.add_fire()
 
-
+    # обработка состояния вертолёта
     def process_helicopter(self, helico, clouds):
       
         c = self.cells[helico.x][helico.y]
@@ -122,7 +142,10 @@ class Map:
             if (helico.lives == 0):
                 helico.game_over()
 
+    # данные для эксорта сохранения
     def export_data(self):
         return{"cells": self.cells}
+
+    # восстановление данных из сохранения
     def import_data(self, data):
         self.cells = data["cells"] or [[0 for i in range(self.w)] for j in range(self.h)]
